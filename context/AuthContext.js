@@ -39,7 +39,9 @@ const AuthProvider = ({ children }) => {
             setSession(responseSession);
             const responseUser = await account.get();
             setUser(responseUser);
-        } catch (error) {}
+        } catch (error) {
+            console.log(error);
+        }
         setLoading(false);
     };
     const signout = async () => {
