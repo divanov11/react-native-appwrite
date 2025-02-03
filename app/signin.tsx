@@ -4,45 +4,48 @@ import { useAuth } from '@/context/AuthContext'
 import { Redirect } from 'expo-router'
 import TextCustom from './components/TextCustom'
 
+
 const signin = () => {
-    const {session} = useAuth()
+    const {session, signin} = useAuth()
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = async () => {}
+    const handleSubmit = async () => {
+        signin({email, password})
+    }
 
     if(session) return <Redirect href="/"/>
   return (
 
       <View  style={styles.container}>
         <View>
-      <TextCustom style={styles.headline} fontSize={72}>MyApp</TextCustom>
+          <TextCustom style={styles.headline} fontSize={72}>SignIn</TextCustom>
 
-      <TextCustom>Password:</TextCustom>
-      <TextInput 
-        placeholder='Enter your email...' 
-        style={styles.input}
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-        />
+          <TextCustom>Email:</TextCustom>
+          <TextInput 
+            placeholder='Enter your email...' 
+            style={styles.input}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+            />
 
-      <TextCustom>Password:</TextCustom>
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-        secureTextEntry
-        />
+          <TextCustom>Password:</TextCustom>
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            secureTextEntry
+            />
 
-      <TouchableOpacity 
-        style={styles.button} 
-        onPress={handleSubmit}
-      >
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-      </View>
+          <TouchableOpacity 
+            style={styles.button} 
+            onPress={handleSubmit}
+          >
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          </View>
       </View>
 
   )
@@ -58,7 +61,7 @@ const styles = StyleSheet.create({
     textAlign:'center',
     marginTop:-100,
     marginBottom:50,
-    fontWeight:800,
+    fontWeight:700,
     fontStyle:'italic'
   },
   input:{
